@@ -16,6 +16,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_select_related = ("category",)
     form = TagForm
 
+
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ("product", "user", "guest_name", "rating", "created_at")

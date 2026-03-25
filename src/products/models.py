@@ -21,6 +21,7 @@ class Category(models.Model):
         ordering = ["name"]
         verbose_name_plural = "Categories"
 
+
 # NEW model.
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True, null=False, blank=False)
@@ -34,6 +35,7 @@ class Tag(models.Model):
     class Meta:
         ordering = ["name"]
         verbose_name_plural = "Tags"
+
 
 class Product(models.Model):
 

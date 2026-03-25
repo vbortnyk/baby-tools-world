@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand
-from django.utils.text import slugify
 
-from products.models import Category, Product, Tag
+from products.models import Category, Product
 
 categories_list = [("boys", "", "boys"), ("girls", "", "girls"), ("toys", "", "toys"), ("outdoor", "", "outdoor")]
 products = [

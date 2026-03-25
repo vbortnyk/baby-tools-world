@@ -21,10 +21,12 @@ class CommentForm(forms.ModelForm):
             self.add_error("guest_email", "Required for guest.")
         return data
 
+
 class TagForm(forms.ModelForm):
     tags = forms.ModelMultipleChoiceField(
         queryset=Tag.objects.all(), widget=forms.CheckboxSelectMultiple, required=False
     )
+
     class Meta:
         model = Tag
         fields = "__all__"

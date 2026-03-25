@@ -1,9 +1,9 @@
 from django.contrib import messages
-from django.db.models import Avg, Count, Prefetch
+from django.db.models import Avg, Count
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import CommentForm
-from .models import Category, Comment, Product, Tag
+from .models import Category, Comment, Product
 
 
 def product_list(request, category_slug=None):
@@ -81,17 +81,14 @@ def product_detail(request, category_slug, pk):
         {"product": product, "comments": comments, "related_products": related_products, "form": form},
     )
 
+
 def products_by_tag(request, tag_id):
     categories = Category.objects.all()
     products = (
         Product.objects.filter(tags__id=tag_id)
         .select_related("category")
         .prefetch_related("tags")
-        .annotate(
-            avg_rating=Avg("comments__rating"), total_ratings=Count("comments")
-        )
+        .annotate(avg_rating=Avg("comments__rating"), total_ratings=Count("comments"))
     )
-
-
 
     return render(request, "products.html", {"categories": categories, "products": products})
