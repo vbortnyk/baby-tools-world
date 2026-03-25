@@ -1,12 +1,14 @@
 from django.core.management.base import BaseCommand
+from django.utils.text import slugify
 
-from products.models import Category, Product
+from products.models import Category, Product, Tag
 
 categories_list = [("boys", "", "boys"), ("girls", "", "girls"), ("toys", "", "toys"), ("outdoor", "", "outdoor")]
 products = [
     {
         "category": "boys",
         "description": "",
+        "tags": [],
         "name": "jumpsuit-blue-01",
         "price": 9.99,
         "image": "imgs/products/jumpsuit-blue.jpeg",
@@ -14,6 +16,7 @@ products = [
     {
         "category": "boys",
         "description": "",
+        "tags": [],
         "name": "pacifier-blue",
         "price": 1.99,
         "image": "imgs/products/blue-pacifier.jpeg",
@@ -21,6 +24,7 @@ products = [
     {
         "category": "boys",
         "description": "",
+        "tags": [],
         "name": "wooden-sword-sir-babylot",
         "price": 22.99,
         "image": "imgs/products/wooden-sword.png",
@@ -28,6 +32,7 @@ products = [
     {
         "category": "girls",
         "description": "",
+        "tags": [],
         "name": "jumpsuit-pink-01",
         "price": 9.99,
         "image": "imgs/products/jumpsuit-rosa.jpeg",
@@ -35,6 +40,7 @@ products = [
     {
         "category": "girls",
         "description": "",
+        "tags": [],
         "name": "pacifier-pink",
         "price": 1.99,
         "image": "imgs/products/rosa-pacifier.jpeg",
@@ -42,6 +48,7 @@ products = [
     {
         "category": "girls",
         "description": "",
+        "tags": [],
         "name": "cuddly-dolphin",
         "price": 17.49,
         "image": "imgs/products/cuddly-dolphin.png",
@@ -49,6 +56,7 @@ products = [
     {
         "category": "toys",
         "description": "",
+        "tags": [],
         "name": "kids-kitchen-le-chef",
         "price": 45.99,
         "image": "imgs/products/blue-kitchen.png",
@@ -56,6 +64,7 @@ products = [
     {
         "category": "toys",
         "description": "",
+        "tags": [],
         "name": "kids-kitchen-le-bakery (rosa)",
         "price": 49.99,
         "image": "imgs/products/rosa-kitchen.png",
@@ -63,6 +72,7 @@ products = [
     {
         "category": "toys",
         "description": "",
+        "tags": [],
         "name": "soft-ball",
         "price": 10.00,
         "image": "imgs/products/baby-ball.png",
@@ -70,6 +80,7 @@ products = [
     {
         "category": "toys",
         "description": "",
+        "tags": [],
         "name": "rattle-blue",
         "price": 11.00,
         "image": "imgs/products/blue-rattle.png",
@@ -77,6 +88,7 @@ products = [
     {
         "category": "toys",
         "description": "",
+        "tags": [],
         "name": "rattle-rosa",
         "price": 11.00,
         "image": "imgs/products/rosa-rattle.png",
@@ -84,6 +96,7 @@ products = [
     {
         "category": "toys",
         "description": "",
+        "tags": [],
         "name": "wooden-horse",
         "price": 22.98,
         "image": "imgs/products/wooden-horse.png",
@@ -91,6 +104,7 @@ products = [
     {
         "category": "outdoor",
         "description": "",
+        "tags": [],
         "name": "sun-cream-baby-strong",
         "price": 0.99,
         "image": "imgs/products/baby-suncream.png",
@@ -98,6 +112,7 @@ products = [
     {
         "category": "outdoor",
         "description": "",
+        "tags": [],
         "name": "sun-hat",
         "price": 4.99,
         "image": "imgs/products/baby-sunhat.png",
@@ -105,6 +120,7 @@ products = [
     {
         "category": "outdoor",
         "description": "",
+        "tags": [],
         "name": "baby-bottle",
         "price": 8.99,
         "image": "imgs/products/baby-bottle.png",

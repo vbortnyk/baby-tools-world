@@ -21,10 +21,24 @@ class Category(models.Model):
         ordering = ["name"]
         verbose_name_plural = "Categories"
 
+# NEW model.
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True, null=False, blank=False)
+    description = models.TextField(max_length=200, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name_plural = "Tags"
 
 class Product(models.Model):
 
     category = models.ForeignKey(Category, null=True, on_delete=models.DO_NOTHING)
+    tags = models.ManyToManyField(Tag, blank=True)
     description = models.TextField(max_length=250, null=True, blank=True)
     image = models.ImageField(upload_to="imgs/products/", null=True, blank=True)
     name = models.CharField(max_length=80, blank=False, null=False)
