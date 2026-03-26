@@ -6,6 +6,26 @@ The project was developed for educational purposes only and therefore has no cla
 > [!NOTE]
 > This project assumes you already know the python programming language
 
+## Table of Contents
+
+- [Baby Tools World](#baby tools world)
+  - [Prerequisits](#1-prerequisits)
+  - [Quickstart](#2-quickstart)
+  - [Project structure](#3-project-structure)
+  - [App overview](#4-app-overview)
+  - [Core functionality](#5-core-functionality)
+  - [Usage](#6-usage)
+  - [Configuration](#7-configuration)
+  - [Running the linting tools](#8-running-the-linting-tools)
+  - [When to run this](#9-when-to-tun-this)
+  - [Testing](#10-testing)
+  - [Running tests](#11-running-tests)
+  - [Running with a WSGI Server](#12-running-with-a-WSGI-server)
+  - [Seeding the application with data](#13-seeding-the-application-with-data)
+  - [Containerization](#14-containerization)
+  - [Build an image](#15-build-an-immage)
+  - [Run a container](#16-run-a-container)
+
 ## Prerequisites
 
 In order to seamlessly interact with the repository and the software it contains you need to following tools preinstalled:
@@ -50,6 +70,21 @@ The project is modularized into several apps:
 - `users`: Handles user authentication and registration.
 
 Each app has its own `models.py`, `views.py`, `urls.py`, and `admin.py` files to encapsulate its functionality.
+
+### Core functionality
+- The app immitates the functionality of an online shop with core features:
+   - Available pruducts overview. Each products can belong one of the following categories:
+     - boys
+     - girls
+     - toys
+     - outdoor
+   - Each category can be reached by clicking on the respective button in the upper left side of the home page
+   - Each product can have a tag. One product can have muliple tags. By clicking on a tag, displayed on a product cart, a user can see the list of all products posessing the tag.
+   - Products, tags and categories can be managed by a user with special rights(admin). 
+   - Admin user can manage other users: add new users, update user information, delete users.
+
+Additional features can be developed if required.
+
 
 
 ## Usage
