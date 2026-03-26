@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Category, Comment, Product
+from .forms import TagForm
+from .models import Category, Comment, Product, Tag
 
 
 @admin.register(Category)
@@ -13,6 +14,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     list_display = ("name", "category", "price", "average_rating", "rating_count", "created_at")
     list_select_related = ("category",)
+    form = TagForm
 
 
 @admin.register(Comment)
@@ -20,3 +22,9 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ("product", "user", "guest_name", "rating", "created_at")
     list_filter = ("rating", "created_at")
     search_fields = ("guest_name", "guest_email", "text", "user__username")
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ("name", "description", "created_at")
+    list_filter = ("name", "description")
