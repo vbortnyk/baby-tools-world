@@ -11,10 +11,10 @@ The project was developed for educational purposes only and therefore has no cla
 - [Baby Tools World](#baby-tools-world)
   - [Prerequisits](#1-prerequisites)
   - [Quickstart](#2-quickstart)
-  - [Project structure](#3-project-structure)
-  - [App overview](#4-app-overview)
-  - [Core functionality](#5-core-functionality)
-  - [Usage](#6-usage)
+  - [Usage](#3-usage)
+     - [Project structure](#4-project-structure)
+     - [App overview](#4-app-overview)
+     - [Core functionality](#5-core-functionality)
   - [Configuration](#7-configuration)
   - [Running the linting tools](#8-running-the-linting-tools)
   - [When to run this](#9-when-to-run-this)
@@ -55,41 +55,37 @@ In order to quickly get started with the project follow these steps:
 1. verify the application is running by visiting `localhost:8000`
 1. (optional) create a superuser by running: `python manage.py createsuperuser`
 
-### 3. Project Structure
+### 3. Usage
 
-- `.gitlab`: GitLab specific project files
-- `.github`: GitHub specific project files
-- `src`: application source code, containing the django project, apps, and other files
-- `requirements.txt`: the project dependencies
+1. App Overview
+ 
+   - `.gitlab`: GitLab specific project files
+   - `.github`: GitHub specific project files
+   - `src`: application source code, containing the django project, apps, and other files
+   - `requirements.txt`: the project dependencies
 
-### 4. App Overview
+2. App Overview
+  
+   The project is modularized into several apps:
 
-The project is modularized into several apps:
+    - `products`: Manages product listings and categories
+    - `users`: Handles user authentication and registration.
 
-- `products`: Manages product listings and categories
-- `users`: Handles user authentication and registration.
+    Each app has its own `models.py`, `views.py`, `urls.py`, and `admin.py` files to encapsulate its functionality.
 
-Each app has its own `models.py`, `views.py`, `urls.py`, and `admin.py` files to encapsulate its functionality.
+ 3. Core functionality
+    - The app immitates the functionality of an online shop with core features:
+     - Available pruducts overview. Each products can belong one of the following categories:
+       - boys
+       - girls
+       - toys
+       - outdoor
+    - Each category can be reached by clicking on the respective button in the upper left side of the home page
+    - Each product can have a tag. One product can have muliple tags. By clicking on a tag, displayed on a product cart, a user can see the list of all products posessing the tag.
+    - Products, tags and categories can be managed by a user with special rights(admin). 
+    - Admin user can manage other users: add new users, update user information, delete users.
 
-### 5. Core functionality
-- The app immitates the functionality of an online shop with core features:
-   - Available pruducts overview. Each products can belong one of the following categories:
-     - boys
-     - girls
-     - toys
-     - outdoor
-   - Each category can be reached by clicking on the respective button in the upper left side of the home page
-   - Each product can have a tag. One product can have muliple tags. By clicking on a tag, displayed on a product cart, a user can see the list of all products posessing the tag.
-   - Products, tags and categories can be managed by a user with special rights(admin). 
-   - Admin user can manage other users: add new users, update user information, delete users.
-
-Additional features can be developed if required.
-
-
-
-### 6. Usage
-
-In this section you can read about the project a bit more in detail.
+    Additional features can be developed if required.
 
 ### 7. Configuration
 
