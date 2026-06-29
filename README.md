@@ -6,7 +6,27 @@ The project was developed for educational purposes only and therefore has no cla
 > [!NOTE]
 > This project assumes you already know the python programming language
 
-## Prerequisites
+## Table of Contents
+
+- [Baby Tools World](#baby-tools-world)
+  - [Prerequisits](#1-prerequisites)
+  - [Quickstart](#2-quickstart)
+  - [Usage](#3-usage)
+     - [Project structure](#4-project-structure)
+     - [App overview](#4-app-overview)
+     - [Core functionality](#5-core-functionality)
+  - [Configuration](#7-configuration)
+  - [Running the linting tools](#8-running-the-linting-tools)
+  - [When to run this](#9-when-to-run-this)
+  - [Testing](#10-testing)
+  - [Running tests](#11-running-tests)
+  - [Running with a WSGI Server](#12-running-with-a-wsgi-server)
+  - [Seeding the application with data](#13-seeding-the-application-with-data)
+  - [Containerization](#14-containerization)
+  - [Build an image](#15-build-an-image)
+  - [Run a container](#16-run-a-container)
+
+### 1. Prerequisites
 
 In order to seamlessly interact with the repository and the software it contains you need to following tools preinstalled:
 
@@ -14,7 +34,7 @@ In order to seamlessly interact with the repository and the software it contains
 - OCI-Compliant Container Engine (e.g. podman, docker, etc.)
 - Editor/IDE of your choice (VSC, PyCharm, etc.)
 
-## Quickstart
+### 2. Quickstart
 
 In order to quickly get started with the project follow these steps:
 
@@ -35,28 +55,39 @@ In order to quickly get started with the project follow these steps:
 1. verify the application is running by visiting `localhost:8000`
 1. (optional) create a superuser by running: `python manage.py createsuperuser`
 
-## Project Structure
+### 3. Usage
 
-- `.gitlab`: GitLab specific project files
-- `.github`: GitHub specific project files
-- `src`: application source code, containing the django project, apps, and other files
-- `requirements.txt`: the project dependencies
+1. App Overview
+ 
+   - `.gitlab`: GitLab specific project files
+   - `.github`: GitHub specific project files
+   - `src`: application source code, containing the django project, apps, and other files
+   - `requirements.txt`: the project dependencies
 
-### Apps Overview
+2. App Overview
+  
+   The project is modularized into several apps:
 
-The project is modularized into several apps:
+    - `products`: Manages product listings and categories
+    - `users`: Handles user authentication and registration.
 
-- `products`: Manages product listings and categories
-- `users`: Handles user authentication and registration.
+    Each app has its own `models.py`, `views.py`, `urls.py`, and `admin.py` files to encapsulate its functionality.
 
-Each app has its own `models.py`, `views.py`, `urls.py`, and `admin.py` files to encapsulate its functionality.
+ 3. Core functionality
+    - The app immitates the functionality of an online shop with core features:
+     - Available pruducts overview. Each products can belong one of the following categories:
+       - boys
+       - girls
+       - toys
+       - outdoor
+    - Each category can be reached by clicking on the respective button in the upper left side of the home page
+    - Each product can have a tag. One product can have muliple tags. By clicking on a tag, displayed on a product cart, a user can see the list of all products posessing the tag.
+    - Products, tags and categories can be managed by a user with special rights(admin). 
+    - Admin user can manage other users: add new users, update user information, delete users.
 
+    Additional features can be developed if required.
 
-## Usage
-
-In this section you can read about the project a bit more in detail.
-
-### Configuration
+### 7. Configuration
 
 To configure the project, follow these steps:
 
@@ -67,7 +98,7 @@ To configure the project, follow these steps:
     - `ALLOWED_HOSTS`: provide a list of comma-separated values for the allowed host configuration => Defaults to `'localhost, 127.0.0.1, 0.0.0.0'`
     - `DEBUG`: Set to `True` for development or `False` for production. Defaults to `True`
 
-### Running the linting tools
+### 8. Running the linting tools
 
 > [!tip]
 > In order to run the routines below the required packages must be installed (done after running `pip install -r requirements.txt`).
@@ -83,7 +114,7 @@ black .
 isort .
 ```
 
-#### When to run this
+#### 9. When to run this
 
 You should check the code-style before pushing the commits to the remote repository.
 In case you forgot it and somehow violated a rule, the CI workflow will fail -> run linting, add changes, commit, push -> see if pipeline passes
@@ -92,7 +123,7 @@ In case you forgot it and somehow violated a rule, the CI workflow will fail -> 
 > If a CI workflow fails, you should check the logs to find out where the workflow failed and what was the reason for this failure.
 
 
-### Testing
+### 10. Testing
 
 This project contains tests for the corresponding apps in the respective packages.
 Tests in Django can either be located in a `tests.py` file within a django-app, or you could also have a module named `tests` (essentially a folder with an `__init__.py` file).
@@ -113,7 +144,7 @@ baby-tool-world/src/products
       └───test_category_model.py <-- this is a test file too
 ```
 
-#### Running tests
+#### 11. Running tests
 
 To run the tests with the `django testrunner` you can use the following command:
 
@@ -121,7 +152,7 @@ To run the tests with the `django testrunner` you can use the following command:
 
 For more information about testing, refer to the testing documentation in this repository, see [here](./docs/testing.md)
 
-### Running with a WSGI Server
+### 12. Running with a WSGI Server
 
 **WSGI** (Web Server Gateway Interface) is a specification that defines a standard interface between web servers and Python web applications or frameworks.
 It acts as a bridge, allowing web servers to communicate with Python applications in a consistent manner.
@@ -139,7 +170,7 @@ the application can handle HTTP requests efficiently and reliably in a scalable 
 
 For more information about WSGI and its configuration, see the [wsgi documentation](./docs/wsgi.md).
 
-### Seeding the application with data
+### 13. Seeding the application with data
 
 This section will guide you through the process of providing an initial seed to the application.
 
@@ -151,7 +182,7 @@ In order to run that comand go the the directory, where your `manage.py` file is
 python manage.py seed_db
 ```
 
-### Containerization
+### 14. Containerization
 
 This section should give a brief overview about the containerization of the django app.
 
@@ -159,7 +190,7 @@ This section should give a brief overview about the containerization of the djan
 > This guide assumes you are using the docker engine, docker desktop, or anything similar.
 > For other tools that are compliant with the OCI spec the commands will be slightly different, but more or less the same.
 
-#### Build an image
+#### 15. Build an image
 
 You can build the container image by running the following command in your terminal:
 
@@ -169,7 +200,7 @@ You can build the container image by running the following command in your termi
 docker build -t baby-tools-world:local .
 ```
 
-#### Run a container
+#### 16. Run a container
 
 To start a container based on the image, use the following command in your terminal:
 
